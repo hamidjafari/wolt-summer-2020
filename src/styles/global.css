@@ -9,6 +9,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: whitesmoke;
 }
+a {
+  text-decoration: none;
+  color: inherit;
+}
+h1 {
+  font-size: 2em;
+}
 * {
   box-sizing: border-box;
 }
