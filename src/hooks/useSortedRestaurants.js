@@ -1,15 +1,11 @@
 import { useState, useEffect } from "react"
 
 const funcs = {
-    "alphabetically": arr => {
-        return Promise.resolve(
-            arr.sort((a, b) => String(a.name).localeCompare(b.name))
-        )
+    "alphabetically": async arr => {
+        return arr.sort((a, b) => String(a.name).localeCompare(b.name))
     },
-    "delivery price": arr => {
-        return Promise.resolve(
-            arr.sort((a, b) => a.delivery_price - b.delivery_price)
-        )
+    "delivery price": async arr => {
+        return arr.sort((a, b) => a.delivery_price - b.delivery_price)
     }
 
 }
