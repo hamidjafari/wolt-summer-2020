@@ -7,7 +7,7 @@ import useSortedRestaurants, { sortNames } from "../hooks/useSortedRestaurants"
 
 export default ({ data }) => {
     const [sortBy, setSortBy] = useState(null);
-    const sortedRestaurants = useSortedRestaurants(data.allDataJson.nodes[0].restaurants, sortBy);
+    const { sorted: sortedRestaurants, sorting } = useSortedRestaurants(data.allDataJson.nodes[0].restaurants, sortBy);
     return <Layout>
         <span>sort </span>
         {sortNames.map(name => (
@@ -17,7 +17,7 @@ export default ({ data }) => {
         ))}
         <GridContainer>
             {sortedRestaurants.map(restaurant => (
-                <RestaurantCard key={restaurant.name} restaurant={restaurant} />
+                <RestaurantCard loading={sorting} key={restaurant.name} restaurant={restaurant} />
             ))}
         </GridContainer>
     </Layout>

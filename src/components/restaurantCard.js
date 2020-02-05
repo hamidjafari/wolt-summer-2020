@@ -1,31 +1,39 @@
-import React from 'react';
+import React from "react"
 import PropTypes from "prop-types"
-import styled from 'styled-components';
+import styled from "styled-components"
 import Img from "gatsby-image"
 import { FaShippingFast } from "react-icons/fa"
 
-const ResaurantCard = ({ restaurant }) => {
-    return <Container>
-        <Img
-            fluid={restaurant.Img.childImageSharp.fluid}
-            style={{
-                height: "60%",
-                borderRadius: "0.5rem",
-                overflow: "hidden",
-            }}
-            imgStyle={{ height: "100%" }}
-        />
-        <h6 className="name">{restaurant.name}</h6>
-        <p className="delivery_price">
-            <span>{restaurant.delivery_price} </span>
-            <FaShippingFast />
-        </p>
-        <div className="tags-container">
-            {restaurant.tags.map(tag => (
-                <span>{tag}</span>
-            ))}
-        </div>
-    </Container>
+const ResaurantCard = ({ restaurant, loading }) => {
+    return (
+        <Container>
+            {loading ? (
+                <LoadingCard />
+            ) : (
+                    <>
+                        <Img
+                            fluid={restaurant.Img.childImageSharp.fluid}
+                            style={{
+                                height: "60%",
+                                borderRadius: "0.5rem",
+                                overflow: "hidden",
+                            }}
+                            imgStyle={{ height: "100%" }}
+                        />
+                        <h6 className="name">{restaurant.name}</h6>
+                        <p className="delivery_price">
+                            <span>{restaurant.delivery_price} </span>
+                            <FaShippingFast />
+                        </p>
+                        <div className="tags-container">
+                            {restaurant.tags.map(tag => (
+                                <span>{tag}</span>
+                            ))}
+                        </div>
+                    </>
+                )}
+        </Container>
+    )
 }
 
 ResaurantCard.propTypes = {
@@ -34,10 +42,11 @@ ResaurantCard.propTypes = {
         name: PropTypes.string.isRequired,
         delivery_price: PropTypes.number.isRequired,
         tags: PropTypes.array.isRequired,
-    }).isRequired
+    }),
+    loading: PropTypes.bool,
 }
 
-export default ResaurantCard;
+export default ResaurantCard
 
 const Container = styled.div`
   display: flex;
@@ -79,4 +88,16 @@ const Container = styled.div`
       font-size: 0.7em;
     }
   }
+`
+
+const LoadingCard = styled.div`
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(#eee, #eee), linear-gradient(#eee, #eee),
+    linear-gradient(#eee, #eee), linear-gradient(#eee, #eee);
+  background-size: 93% 45%, 70% 12px, 40% 12px, 50% 10px;
+  background-position: 50% 7px, 8px 59%, 8px 69%, 8px 97%;
+  background-repeat: no-repeat;
 `
