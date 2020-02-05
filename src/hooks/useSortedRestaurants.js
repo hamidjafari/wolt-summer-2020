@@ -18,7 +18,8 @@ const funcs = {
                     calcDistance(latitude, longitude, b.location[0], b.location[1])
             )
         } catch (error) {
-            alert("Unable to retrieve your location")
+            alert("Unable to retrieve your location");
+            return arr;
         }
     },
 }
@@ -35,7 +36,7 @@ export default (restaurants, sortBy) => {
                 .then(async res => {
                     await fakeAsync(Math.random() * 1000)
                     setSorted(res)
-                })
+                }).catch(e => { })
                 .finally(() => setSorting(false))
         }
     }, [restaurants, sortBy])
