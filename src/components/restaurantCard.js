@@ -1,12 +1,12 @@
 import React from "react"
 import PropTypes from "prop-types"
-import styled from "styled-components"
+import styled, { css, keyframes } from "styled-components"
 import Img from "gatsby-image"
 import { FaShippingFast } from "react-icons/fa"
 
 const ResaurantCard = ({ restaurant, loading }) => {
     return (
-        <Container>
+        <Container loading={loading}>
             {loading ? (
                 <LoadingCard />
             ) : (
@@ -48,6 +48,18 @@ ResaurantCard.propTypes = {
 
 export default ResaurantCard
 
+const fadeInOut = keyframes`
+0% {
+    opacity:100%;
+}
+35% {
+    opacity:20%;
+}
+100% {
+    opacity:100%;
+}
+`
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -59,6 +71,10 @@ const Container = styled.div`
   -webkit-box-shadow: 0px 2px 11px -2px rgba(0, 0, 0, 0.07);
   -moz-box-shadow: 0px 2px 11px -2px rgba(0, 0, 0, 0.07);
   box-shadow: 0px 2px 11px -2px rgba(0, 0, 0, 0.07);
+  ${p => p.loading ? css`
+    animation: ${fadeInOut} 1.5s ease-out infinite;
+    pointer-events:none;
+  `: ""}
   &:hover {
     -webkit-box-shadow: 0px 2px 35px -16px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 2px 35px -16px rgba(0, 0, 0, 0.75);
