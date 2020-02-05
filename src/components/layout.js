@@ -23,7 +23,7 @@ const Layout = ({ children }) => {
         <br />
         <footer>
           © {new Date().getFullYear()}
-          <a href="https://www.wolt.com">Wolt</a>
+          <a href="https://www.wolt.com"> Wolt</a>
         </footer>
       </Container>
     </>
