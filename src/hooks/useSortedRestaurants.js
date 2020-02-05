@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import {getPos,calcDistance} from '../utils/location'
+import { getPos, calcDistance } from '../utils/location'
 
 const funcs = {
     alphabetically: async arr => {
@@ -33,7 +33,7 @@ export default (restaurants, sortBy) => {
             setSorting(true)
             fn([...restaurants])
                 .then(async res => {
-                    await fakeAsync(300)
+                    await fakeAsync(Math.random() * 1000)
                     setSorted(res)
                 })
                 .finally(() => setSorting(false))
