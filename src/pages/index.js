@@ -1,18 +1,27 @@
-import React from "react"
+import React, { useState } from "react"
 import { graphql } from "gatsby"
 import styled from "styled-components"
 import Layout from "../components/layout"
 import RestaurantCard from '../components/restaurantCard'
+import useSortedRestaurants, { sortNames } from "../hooks/useSortedRestaurants"
 
-export default ({ data }) => (
-    <Layout>
+export default ({ data }) => {
+    const [sortBy, setSortBy] = useState(null);
+    const sortedRestaurants = useSortedRestaurants(data.allDataJson.nodes[0].restaurants, sortBy);
+    return <Layout>
+        <span>sort </span>
+        {sortNames.map(name => (
+            <Button active={name === sortBy} onClick={() => setSortBy(name)}>
+                {name}
+            </Button>
+        ))}
         <GridContainer>
-            {data.allDataJson.nodes[0].restaurants.map(restaurant => (
+            {sortedRestaurants.map(restaurant => (
                 <RestaurantCard key={restaurant.name} restaurant={restaurant} />
             ))}
         </GridContainer>
     </Layout>
-)
+}
 
 export const query = graphql`
   query {
@@ -49,5 +58,20 @@ const GridContainer = styled.div`
   }
   @media (max-width: 576px) {
     grid-template-columns: 1fr 1fr;
+  }
+`
+
+const Button = styled.button`
+  font-size: 0.8em;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.4rem;
+  margin: 0.5rem 0.2rem;
+  border: none;
+  color: ${p => (p.active ? "white" : "gray")};
+  background-color: ${p => (p.active ? "#c75a5a" : "lightgray")};
+  :hover {
+    color: white;
+    cursor: pointer;
+    background-color: #c75a5a;
   }
 `
