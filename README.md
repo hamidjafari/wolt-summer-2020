@@ -1,6 +1,6 @@
 # Wolt summer 2020 assignment
 
-wolt summer 2020 frontend assignment
+wolt summer 2020 frontend assignment ([repo](https://github.com/woltapp/summer2020))
 there is a list of restaurants in json file
 the task is show this restaurants in a respinsive fashion and make them sortable for end-users.
 [demo](https://practical-wiles-5fd8c1.netlify.com)
