@@ -3,6 +3,7 @@
 wolt summer 2020 frontend assignment
 there is a list of restaurants in json file
 the task is show this restaurants in a respinsive fashion and make them sortable for end-users.
+[demo](https://practical-wiles-5fd8c1.netlify.com)
 
 ## how to use
 1- clone the repo
